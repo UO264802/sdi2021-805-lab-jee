@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/ServletSaludo")
 public class ServletSaludo extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	int contador	= 0;
+	int contador = 0;
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
