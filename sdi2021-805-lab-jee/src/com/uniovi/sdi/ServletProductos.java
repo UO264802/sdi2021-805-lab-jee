@@ -34,7 +34,6 @@ public class ServletProductos extends HttpServlet {
 			throws ServletException, IOException {
 
 		List<Producto> products = new ProductosService().getProductos();
-		
 		request.setAttribute("productosTienda", products);
 		getServletContext().getRequestDispatcher("/vista-productos.jsp").forward(request, response);
 	}
