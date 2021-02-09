@@ -16,14 +16,31 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
+	<!-- Barra de navegacion superior -->
+	<nav class="navbar navbar-default">
+	<div class="container-fluid">
+		<ul class="nav navbar-nav">
+			<li><a href="incluirEnCarrito">Carrito</a></li>
+			<li><a href="login.jsp">Login</a></li>
+			<li><a href="admin.jsp">Admnisitrar productos</a></li>
+			<li><a href="productos">Productos</a></li>
+		</ul>
+	</div>
+	</nav>
+
 	<!-- Contenido -->
 	<div class="container" id="contenedor-principal">
 		<h2>Vista-Carrito</h2>
 		<ul>
 			<c:forEach var="par" items="${paresCarrito}">
 				<tr>
-					<li>${par.key}- ${par.value}</li>
+					<li>${par.key}-${par.value}
+					<a href="EliminarProducto?producto=<c:out value="${par.key}"/>"
+						class="btn btn-default"> <c:out value="Eliminar" />
+					</a>
+					</li>
 				</tr>
+
 			</c:forEach>
 		</ul>
 	</div>
