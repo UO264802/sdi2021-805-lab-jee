@@ -36,5 +36,5 @@ public class MarksController {
 		marksService.deleteMark(id);
 		return "Ok";
 	}
-
+ 
 }
