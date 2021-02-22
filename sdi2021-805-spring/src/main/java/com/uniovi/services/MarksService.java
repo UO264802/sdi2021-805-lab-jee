@@ -14,7 +14,6 @@ public class MarksService {
 	@Autowired
 	private MarksRepository marksRepository;
 
-
 	public List<Mark> getMarks() {
 		List<Mark> marks = new ArrayList<Mark>();
 		marksRepository.findAll().forEach(marks::add);
