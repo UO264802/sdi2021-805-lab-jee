@@ -64,8 +64,9 @@ public class MarksController {
 	}
 
 	@RequestMapping("/mark/details/{id}")
-	public String getDetail(@PathVariable Long id) {
-		return marksService.getMark(id).toString();
+	public String getDetail(Model model, @PathVariable Long id) {
+		model.addAttribute("mark", marksService.getMark(id));
+		return "mark/details";
 	}
 
 	@RequestMapping("/mark/delete/{id}")
