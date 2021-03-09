@@ -222,14 +222,14 @@ public class NotaneitorTests {
 		PO_View.loginInitialization(driver, "99999993D", "99999993D");
 
 		// Pinchamos en la opción de menu de Notas: //li[contains(@id, 'marks-menu')]/a
-		PO_View.checkElement(driver, "//li[contains(@id, 'marks-menu')]/a", "0");
+		PO_View.checkElement(driver, "//li[contains(@id, 'marks-menu')]/a", 0);
 		// Esperamos a aparezca la opción de añadir nota: //a[contains(@href,
 		// 'mark/add')] y Pinchamos en agregar Nota.
-		PO_View.checkElement(driver, "//a[contains(@href, 'mark/add')]", "0");
+		PO_View.checkElement(driver, "//a[contains(@href, 'mark/add')]", 0);
 		// Ahora vamos a rellenar la nota. //option[contains(@value, '4')]
 		PO_PrivateView.fillFormAddMark(driver, 3, "Nota Nueva 1", "8");
 		// Esperamos a que se muestren los enlaces de paginación la lista de notas
-		PO_View.checkElement(driver, "//a[contains(@class, 'page-link')]", "3");
+		PO_View.checkElement(driver, "//a[contains(@class, 'page-link')]", 3);
 		// Comprobamos que aparece la nota en la pagina
 		PO_View.checkElement(driver, "text", "Nota Nueva 1");
 		// Ahora nos desconectamos

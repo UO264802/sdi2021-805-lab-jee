@@ -58,12 +58,19 @@ public class PO_View {
 		return elementos;
 	}
 
-	//Creamos este método que va a ser muy utilizado, así conseguimos limpiar el codigo de las demas clases
+	// Creamos este método que va a ser muy utilizado, así conseguimos limpiar el
+	// codigo de las demas clases
 	static public void loginInitialization(WebDriver driver, String dni, String text) {
 		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
 		// Rellenamos el formulario
 		PO_LoginView.fillForm(driver, dni, "123456");
 		// Comprobamos que entramos en la pagina privada de Alumno
 		PO_View.checkElement(driver, "text", "Notas del usuario");
+	}
+
+	public static List<WebElement> checkElement(WebDriver driver, String xpath, int index) {
+		List<WebElement> elementos = checkElement(driver, "free", xpath);
+		elementos.get(index).click();
+		return elementos;
 	}
 }
