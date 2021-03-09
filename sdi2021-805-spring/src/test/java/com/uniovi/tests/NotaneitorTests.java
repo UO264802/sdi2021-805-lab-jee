@@ -184,6 +184,7 @@ public class NotaneitorTests {
 	// usando el rol de estudiante.
 	@Test
 	public void PR12() {
+		//Refactorizando Codigo:
 		PO_View.loginInitialization(driver, "99999990A", "Notas del usuario");
 		// Contamos el número de filas de notas
 		List<WebElement> elementos = SeleniumUtils.EsperaCargaPagina(driver, "free", "//tbody/tr",
@@ -198,6 +199,7 @@ public class NotaneitorTests {
 	// P13. Ver la lista de Notas.
 	@Test
 	public void PR13() {
+		//Refactorizando Codigo:
 		PO_View.loginInitialization(driver, "99999990A", "Notas del usuario");
 
 		SeleniumUtils.esperarSegundos(driver, 1);
@@ -216,6 +218,7 @@ public class NotaneitorTests {
 	// P14. Esta prueba podría encapsularse mejor ...
 	@Test
 	public void PR14() {
+		//Refactorizando Codigo:
 		PO_View.loginInitialization(driver, "99999993D", "99999993D");
 
 		// Pinchamos en la opción de menu de Notas: //li[contains(@id, 'marks-menu')]/a
@@ -238,6 +241,7 @@ public class NotaneitorTests {
 	// PRN. Ver la lista de Notas.
 	@Test
 	public void PR15() {
+		//Refactorizando Codigo:
 		PO_View.loginInitialization(driver, "99999993D", "99999993D");
 
 		// Pinchamos en la opción de menu de Notas: //li[contains(@id, 'marks-menu')]/a
