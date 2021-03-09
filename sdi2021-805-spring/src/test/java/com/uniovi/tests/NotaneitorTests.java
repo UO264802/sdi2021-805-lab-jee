@@ -180,5 +180,84 @@ public class NotaneitorTests {
 		PO_HomeView.clickOption(driver, "/logout", "text", "Identifícate");
 	}
 
+	// PR12. Loguearse, comprobar que se visualizan 4 filas de notas y desconectarse
+	// usando el rol de estudiante.
+	@Test
+	public void PR12() {
+		PO_View.loginInitialization(driver, "99999990A", "Notas del usuario");
+		// Contamos el número de filas de notas
+		List<WebElement> elementos = SeleniumUtils.EsperaCargaPagina(driver, "free", "//tbody/tr",
+				PO_View.getTimeout());
+		assertTrue(elementos.size() == 4);
+		// Ahora nos desconectamos
+		PO_PrivateView.clickOption(driver, "logout", "text", "Identifícate");
+	}
+
+	// PR13. Loguearse como estudiante y ver los detalles de la nota con Descripcion
+	// = Nota A2.
+	// P13. Ver la lista de Notas.
+	@Test
+	public void PR13() {
+		PO_View.loginInitialization(driver, "99999990A", "Notas del usuario");
+
+		SeleniumUtils.esperarSegundos(driver, 1);
+		// Contamos las notas
+		By enlace = By.xpath("//td[contains(text(), 'Nota A2')]/following-sibling::*[2]");
+		driver.findElement(enlace).click();
+		SeleniumUtils.esperarSegundos(driver, 1);
+		// Esperamos por la ventana de detalle
+		PO_View.checkElement(driver, "text", "Detalles de la nota");
+		SeleniumUtils.esperarSegundos(driver, 1);
+		// Ahora nos desconectamos
+		PO_PrivateView.clickOption(driver, "logout", "text", "Identifícate");
+	}
+
+	// P14. Loguearse como profesor y Agregar Nota A2.
+	// P14. Esta prueba podría encapsularse mejor ...
+	@Test
+	public void PR14() {
+		PO_View.loginInitialization(driver, "99999993D", "99999993D");
+
+		// Pinchamos en la opción de menu de Notas: //li[contains(@id, 'marks-menu')]/a
+		PO_View.checkElement(driver, "//li[contains(@id, 'marks-menu')]/a", "0");
+		// Esperamos a aparezca la opción de añadir nota: //a[contains(@href,
+		// 'mark/add')] y Pinchamos en agregar Nota.
+		PO_View.checkElement(driver, "//a[contains(@href, 'mark/add')]", "0");
+		// Ahora vamos a rellenar la nota. //option[contains(@value, '4')]
+		PO_PrivateView.fillFormAddMark(driver, 3, "Nota Nueva 1", "8");
+		// Esperamos a que se muestren los enlaces de paginación la lista de notas
+		PO_View.checkElement(driver, "//a[contains(@class, 'page-link')]", "3");
+		// Comprobamos que aparece la nota en la pagina
+		PO_View.checkElement(driver, "text", "Nota Nueva 1");
+		// Ahora nos desconectamos
+		PO_PrivateView.clickOption(driver, "logout", "text", "Identifícate");
+	}
+
+	// PRN. Loguearse como profesor, vamos a la ultima página y Eliminamos la Nota
+	// Nueva 1.
+	// PRN. Ver la lista de Notas.
+	@Test
+	public void PR15() {
+		PO_View.loginInitialization(driver, "99999993D", "99999993D");
+
+		// Pinchamos en la opción de menu de Notas: //li[contains(@id, 'marks-menu')]/a
+		PO_View.checkElement(driver, "//li[contains(@id, 'marks-menu')]/a", "0");
+		// Pinchamos en la opción de lista de notas.
+		PO_View.checkElement(driver, "//a[contains(@href, 'mark/list')]", "0");
+		// Esperamos a que se muestren los enlaces de paginacion la lista de notas
+		PO_View.checkElement(driver, "//a[contains(@class, 'page-link')]", "3");
+		// Esperamos a que aparezca la Nueva nota en la ultima pagina
+		// Y Pinchamos en el enlace de borrado de la Nota "Nota Nueva 1"
+		// td[contains(text(), 'Nota Nueva 1')]/following-sibling::*/a[contains(text(),
+		// 'mark/delete')]"
+		PO_View.checkElement(driver,
+				"//td[contains(text(), 'Nota Nueva 1')]/following-sibling::*/a[contains(@href, 'mark/delete')]", "0");
+		// Volvemos a la última pagina
+		PO_View.checkElement(driver, "//a[contains(@class, 'page-link')]", "3");
+		// Y esperamos a que NO aparezca la ultima "Nueva Nota 1"
+		SeleniumUtils.EsperaCargaPaginaNoTexto(driver, "Nota Nueva 1", PO_View.getTimeout());
+		// Ahora nos desconectamos
+		PO_PrivateView.clickOption(driver, "logout", "text", "Identifícate");
+	}
 
 }
